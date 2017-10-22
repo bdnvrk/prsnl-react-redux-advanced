@@ -1,0 +1,12 @@
+li {
+  list-style: none;
+  padding: 20px;
+}
+
+.comments-btn {
+  display: block
+}
+
+li * {
+ padding: 10px;
+}
