@@ -4,17 +4,22 @@ import PropTypes from 'prop-types'
 import { selectPost } from '../actions/actions'
 import { connect } from 'react-redux'
 
-function Post({postData, handleClick, subreddit}) {
+function Post({postData, handleClick}) {
     return(
         
         <div className="post-entry">
-            <a target="_blank" href={postData.url}>{postData.title}</a>
-            {postData.thumbnail_width ? <img src={postData.thumbnail} alt="Thumbnail"/> : ""}
-            <Link to="/comments" 
-                onClick={() => handleClick(parseUrl(postData.permalink))} 
-                className="comments-btn">
-                Comments
-            </Link>
+            <div className="post-content">
+                <a target="_blank" href={postData.url}>{postData.title}</a>
+                <br/>
+                <Link to="/comments" 
+                    onClick={() => handleClick(parseUrl(postData.permalink))} 
+                    className="btn btn-outline-primary">
+                    Comments
+                </Link>
+            </div>
+            <div className="post-img">
+                {postData.thumbnail_width ? <img src={postData.thumbnail} alt="Thumbnail"/> : ""}
+            </div>
         </div>
     );
 }
@@ -32,7 +37,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 
 Post.propTypes = {
-    postData: PropTypes.object.isRequired, 
+    postData: PropTypes.object.isRequired,
+    handleClick: PropTypes.func.isRequired,
 }
 
 export default connect(null, mapDispatchToProps)(Post)

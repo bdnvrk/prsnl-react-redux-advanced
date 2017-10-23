@@ -26,7 +26,7 @@ function comments(
             return Object.assign({}, state, {
                 isFetching: false,
                 didInvalidate: false,
-                items: action.posts,
+                items: action.comments,
                 lastUpdated: action.receivedAt
             })
         default:

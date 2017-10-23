@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
     fetchCommentsIfNeeded,
     invalidateComments,
 } from '../actions/commentsActions'
+import CommentsList from '../components/CommentsList';
 
 
 class Comments extends Component {
@@ -17,15 +19,7 @@ class Comments extends Component {
         const { dispatch, url} = this.props
         dispatch(fetchCommentsIfNeeded(url))
       }
-    
-      /**componentDidUpdate(prevProps) {
-        if (this.props.selectedSubreddit !== prevProps.selectedSubreddit) {
-          const { dispatch, selectedSubreddit } = this.props
-          dispatch(fetchCommentsIfNeeded(selectedSubreddit))
-        }
-      }**/
-    
-    
+
       handleRefreshClick(e) {
         e.preventDefault()
     
@@ -38,23 +32,19 @@ class Comments extends Component {
         const {posts, isFetching, lastUpdated } = this.props
         return (
           <div>
-
+            <h1>Comments</h1>
             <p>
-              {lastUpdated &&
-                <span>
-                  Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-                  {' '}
-                </span>}
-              {!isFetching &&
-                <a href="#" onClick={this.handleRefreshClick}>
-                  Refresh
-                </a>}
+                <Link to="/">Go back</Link> 
+                {' '}
+                {
+                    !isFetching && <a href="#" onClick={this.handleRefreshClick}>Refresh</a>
+                }
             </p>
             {isFetching && posts.length === 0 && <h2>Loading...</h2>}
             {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
             {posts.length > 0 &&
               <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                {posts}
+                <CommentsList posts={posts}/>
               </div>}
           </div>
         )
@@ -63,12 +53,12 @@ class Comments extends Component {
 
 
 function mapStateToProps(state) {
-  const { commentsTarget, commentSection} = state
+  const { commentSection } = state
   const {
     isFetching,
     lastUpdated,
     items: posts
-  } = commentSection[commentsTarget] || {
+  } = commentSection['comments'] || {
     isFetching: true,
     items: []
   }

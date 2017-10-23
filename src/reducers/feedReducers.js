@@ -6,7 +6,7 @@ import {
   SELECT_POST
 } from '../actions/actions'
 
-export function selectedSubreddit(state = 'reactjs', action) {
+export function selectedSubreddit(state = 'analog', action) {
   switch (action.type) {
     case SELECT_SUBREDDIT:
       return action.subreddit

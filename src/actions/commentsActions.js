@@ -23,22 +23,20 @@ function receiveComments(url, json) {
   return {
     type: RECEIVE_COMMENTS,
     url,
-    comments: json,//.data.children.map(child => child.data),
+    post_content: json[0].data.children.map(child => child.data),
+    comments: json[1].data.children.map(child => child.data),
     receivedAt: Date.now()
   }
 }
 
-
 function fetchComments(url) {
   return dispatch => {
     dispatch(requestComments(url))
-    console.log(url);
-    return fetch(`https://www.reddit.com/${url}.json`)
+    return fetch(`https://www.reddit.com${url}.json`)
       .then(response => response.json())
       .then(json => dispatch(receiveComments(url, json)))
   }
 }
-
 
 function shouldFetchComments(state, url) {
   const comments = state.currentComments

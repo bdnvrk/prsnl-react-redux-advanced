@@ -21,13 +21,6 @@ class AsyncApp extends Component {
     dispatch(fetchPostsIfNeeded(selectedSubreddit))
   }
 
-  /*componentDidUpdate(prevProps) {
-    if (this.props.selectedSubreddit !== prevProps.selectedSubreddit) {
-      const { dispatch, selectedSubreddit } = this.props
-      dispatch(fetchPostsIfNeeded(selectedSubreddit))
-    }
-  }*/
-
   handleChange(nextSubreddit) {
     this.props.dispatch(selectSubreddit(nextSubreddit))
     this.props.dispatch(fetchPostsIfNeeded(nextSubreddit))
@@ -48,7 +41,7 @@ class AsyncApp extends Component {
         <Picker
           value={selectedSubreddit}
           onChange={this.handleChange}
-          options={['reactjs', 'frontend']}
+          options={['reactjs', 'frontend', 'javascript', 'analog']}
         />
         <p>
           {lastUpdated &&

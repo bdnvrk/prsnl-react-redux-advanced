@@ -10,3 +10,61 @@ li {
 li * {
  padding: 10px;
 }
+.post-entry img {
+  height: 100%;
+  float: right;
+}
+
+p.author {
+  display: inline-block;
+}
+
+a.btn {
+  margin: 20px 5px;
+}
+
+.post-entry {
+  /*height: 120px;*/
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 10px solid #2196F3;
+  background-color: #E3F2FD;
+}
+
+
+.comments-list div {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 10px solid #2196F3;
+  background-color: #E3F2FD;
+  font-size: 0.8rem;
+}
+
+
+.comment-author {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.comment-author span {
+  font-weight: 400;
+}
+.post-content {
+  display: inline-block;
+  vertical-align: top;
+  width: 80%
+}
+
+.post-img {
+  display: inline-block;
+  margin-left: 5%;
+}
+
+@media only screen and (max-width: 768px) {
+  .post-entry img {
+    display: none;
+  }
+  a.btn {
+    width: 100%;
+  }
+}
